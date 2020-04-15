@@ -1,0 +1,146 @@
+
+<div class="alert alert-danger" role="alert" *ngIf="errorList!=''">
+    Error with: {{errorList}}
+</div>
+
+<form (ngSubmit)="getEmployees()">
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Firstname</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" placeholder="Firstname" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="firstName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Lastname</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" placeholder="Lastname" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="lastName">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="colFormLabel" class="col-sm-2 col-form-label">Username</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" placeholder="Username" [ngModelOptions]="{standalone: true}"
+        [(ngModel)]="userPrincipalName">
+    </div>
+    <div class="col-sm-4">
+      <button type="button" class="btn btn-primary" (click)="getEmployees()">Search</button>
+    </div>
+  </div>
+  <br>
+</form>
+
+
+<table class="table table-striped">
+  <div class="alert alert-danger" role="alert" *ngIf="errorDetail!=''">
+     Error with: {{errorList}}
+  </div>
+
+  <thead>
+    <tr>
+      <th scope="col">LastName</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">Username</th>
+      <th scope="col">Office Number</th>
+      <th scope="col">Mobile Number</th>
+      <th scope="col">Options</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let employee of employees;">
+      <td>{{ employee.firstName }}</td>
+      <td>{{ employee.lastName }}</td>
+      <td>{{ employee.userPrincipalName }}</td>
+      <td>{{ employee.officePhone  }}</td>
+      <td>{{ employee.mobilePhone  }}</td>
+      <td>
+        <button type="button" class="btn btn-success"
+          (click)="getEmployeeDescription(employee.id, content)">View</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="text-align: right;">
+  <button type="button" class="btn btn-primary" (click)="previousPage()">
+    < Previous
+  </button> 
+  Page {{page+1}} 
+  <button type="button" class="btn btn-primary" (click)="nextPage()">
+    Next >
+  </button>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">User Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <table>
+      <tr>
+        <td>
+          <b>First name:</b>
+        </td>
+        <td>
+          {{ employeeDescription.firstName }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Last name:</b>
+        </td>
+        <td>
+          {{ employeeDescription.lastName }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>User name:</b>
+        </td>
+        <td>
+          {{ employeeDescription.userPrincipalName }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Job title:</b>
+        </td>
+        <td>
+          {{ employeeDescription.jobTitle }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Department:</b>
+        </td>
+        <td>
+          {{ employeeDescription.department }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Office number:</b>
+        </td>
+        <td>
+          {{ employeeDescription.officePhone }}
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b>Mobile number:</b>
+        </td>
+        <td>
+          {{ employeeDescription.mobilePhone }}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+  </div>
+</ng-template>

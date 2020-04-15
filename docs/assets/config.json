@@ -1,0 +1,5 @@
+{
+    "employeesUrlApi": "https://virtserver.swaggerhub.com/vkhazin/employee-svc/1.0.0/employees",
+    "employeeDescriptionUrlApi": "https://virtserver.swaggerhub.com/vkhazin/employee-svc/1.0.0/employee/",
+    "tableRows":10
+}
