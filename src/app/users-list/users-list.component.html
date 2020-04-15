@@ -1,6 +1,6 @@
 
 <div class="alert alert-danger" role="alert" *ngIf="errorList!=''">
-    Error with: {{errorList}}
+    Error with: {{errorList.message}}
 </div>
 
 <form (ngSubmit)="getEmployees()">
@@ -25,7 +25,7 @@
         [(ngModel)]="userPrincipalName">
     </div>
     <div class="col-sm-4">
-      <button type="button" class="btn btn-primary" (click)="getEmployees()">Search</button>
+      <button type="button" class="btn btn-primary" (click)="searchEmployees()">Search</button>
     </div>
   </div>
   <br>
@@ -34,7 +34,7 @@
 
 <table class="table table-striped">
   <div class="alert alert-danger" role="alert" *ngIf="errorDetail!=''">
-     Error with: {{errorList}}
+     Error with: {{errorList.message}}
   </div>
 
   <thead>
@@ -63,7 +63,7 @@
 </table>
 
 <div style="text-align: right;">
-  <button type="button" class="btn btn-primary" (click)="previousPage()">
+  <button type="button" class="btn btn-primary" [disabled]="skip==0" (click)="previousPage()">
     < Previous
   </button> 
   Page {{page+1}} 

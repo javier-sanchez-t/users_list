@@ -30,12 +30,17 @@ export class UsersListComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  searchEmployees(){
+    this.skip = 0;
+    this.getEmployees();
+  }
+
   getEmployees() {
     this.employeeService.getEmployees(this.lastName, this.firstName, this.userPrincipalName, this.skip, this.limit).subscribe(results => {
       this.employees = results;
     }, error => {
       this.errorList = error;
-      console.log("ERROR: " + error);
+      console.log("ERROR: ", error);
     });
   }
 
@@ -46,7 +51,7 @@ export class UsersListComponent implements OnInit {
       this.modalService.open(content, { centered: true });
     }, error => {
       this.errorDetail = error;
-      console.log("ERROR: " + error);
+      console.log("ERROR: ", error);
     });
   }
 
@@ -54,11 +59,13 @@ export class UsersListComponent implements OnInit {
   nextPage() {
     this.page = this.page + 1;
     this.skip = this.page * this.limit;
+    this.getEmployees();
   }
 
   previousPage() {
     this.page = this.page - 1;
     this.skip = this.page * this.limit;
+    this.getEmployees();
   }
 
 }
