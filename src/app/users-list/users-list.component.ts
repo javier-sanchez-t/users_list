@@ -3,6 +3,7 @@ import { EmployeeService } from '../services/employee.service';
 import { AppConfigService } from '../services/app-config.service';
 import { Employee } from '../model/Employee';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { faSearch, faEye, faChevronRight, faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-users-list',
@@ -11,6 +12,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UsersListComponent implements OnInit {
 
+  faSearchIcon = faSearch;
+  faEyeIcon = faEye;
+  faChevronRightIcon = faChevronRight;
+  faChevronLeftIcon = faChevronLeft;
   lastName: string = "";
   firstName: string = "";
   userPrincipalName: string = "";
@@ -20,8 +25,8 @@ export class UsersListComponent implements OnInit {
   employees: any = [];
   employeeDescription: Employee;
   displayedColumns: string[] = ['lastName', 'firstName', 'userPrincipalName', 'officePhone', 'mobilePhone'];
-  errorList = "";
-  errorDetail = "";
+  errorList:any = "";
+  errorDetail:any = "";
 
   constructor(private employeeService: EmployeeService, private modalService: NgbModal, private config: AppConfigService) {
     this.getEmployees();

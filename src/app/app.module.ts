@@ -11,6 +11,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms'; 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AppConfigService } from './services/app-config.service';
 
 export function appInit(appConfigService: AppConfigService) {
@@ -32,7 +33,8 @@ export function appInit(appConfigService: AppConfigService) {
     MatFormFieldModule,
     MatInputModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    FontAwesomeModule
   ],
   providers: [AppConfigService,
     {
