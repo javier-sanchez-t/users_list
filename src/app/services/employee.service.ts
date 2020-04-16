@@ -12,7 +12,8 @@ export class EmployeeService {
   constructor(private http: HttpClient, private config: AppConfigService) { }
 
   getEmployees(lastName: string, firstName: string, userPrincipalName: string, skip: number, limit: number): Observable<Employee> {
-    let url = `${this.config.employeesUrlApi}?skip=${skip}&limit=${limit}`;
+    //let url = `${this.config.employeesUrlApi}?skip=${skip}&limit=${limit}`;
+    let url = `${this.config.employeesUrlApi}?skip=${skip}`;
 
     if (lastName != "") {
       url += `&lastName=${lastName}`;

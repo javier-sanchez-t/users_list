@@ -1,81 +1,70 @@
-
 <div class="alert alert-danger" role="alert" *ngIf="errorList!=''">
-    Error with: {{errorList.message}}
+  Error with: {{errorList.message}}
 </div>
 
-<form (ngSubmit)="getEmployees()">
-  <div class="form-group row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label">Firstname</label>
-    <div class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Firstname" [ngModelOptions]="{standalone: true}"
+
+<form class="needs-validation" novalidate>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+      <input type="text" class="form-control" placeholder="First name" [ngModelOptions]="{standalone: true}"
         [(ngModel)]="firstName">
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label">Lastname</label>
-    <div class="col-sm-4">
-      <input type="text" class="form-control" placeholder="Lastname" [ngModelOptions]="{standalone: true}"
+    <div class="col-md-3 mb-3">
+      <input type="text" class="form-control" placeholder="Last name" [ngModelOptions]="{standalone: true}"
         [(ngModel)]="lastName">
     </div>
-  </div>
-  <div class="form-group row">
-    <label for="colFormLabel" class="col-sm-2 col-form-label">Username</label>
-    <div class="col-sm-4">
+    <div class="col-md-3 mb-3">
       <input type="text" class="form-control" placeholder="Username" [ngModelOptions]="{standalone: true}"
         [(ngModel)]="userPrincipalName">
     </div>
-    <div class="col-sm-4">
-      <button type="button" class="btn btn-primary" (click)="searchEmployees()"><fa-icon [icon]="faSearchIcon"></fa-icon></button>
+    <div class="col-md-3 mb-3">
+      <button type="button" class="btn btn-primary" (click)="searchEmployees()">
+        <fa-icon [icon]="faSearchIcon"></fa-icon>
+      </button>
     </div>
   </div>
-  <br>
 </form>
 
 
 <table class="table table-striped">
   <div class="alert alert-danger" role="alert" *ngIf="errorDetail!=''">
-     Error with: {{errorList.message}}
+    Error with: {{errorList.message}}
   </div>
 
   <thead>
     <tr>
-      <th scope="col">LastName</th>
-      <th scope="col">FirstName</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">First Name</th>
       <th scope="col">Username</th>
       <th scope="col">Office Number</th>
       <th scope="col">Mobile Number</th>
-      <th scope="col">Options</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees;">
-      <td>{{ employee.firstName }}</td>
-      <td>{{ employee.lastName }}</td>
-      <td>{{ employee.userPrincipalName }}</td>
-      <td>{{ employee.officePhone  }}</td>
-      <td>{{ employee.mobilePhone  }}</td>
-      <td>
-        <button type="button" class="btn btn-success"
-          (click)="getEmployeeDescription(employee.id, content)"><fa-icon [icon]="faEyeIcon"></fa-icon></button>
-      </td>
+      <td class="clickable" (click)="getEmployeeDescription(employee.id, content)">{{ employee.firstName }}</td>
+      <td class="clickable" (click)="getEmployeeDescription(employee.id, content)">{{ employee.lastName }}</td>
+      <td class="clickable" (click)="getEmployeeDescription(employee.id, content)">{{ employee.userPrincipalName }}</td>
+      <td class="clickable" (click)="getEmployeeDescription(employee.id, content)">{{ employee.officePhone  }}</td>
+      <td class="clickable" (click)="getEmployeeDescription(employee.id, content)">{{ employee.mobilePhone  }}</td>
     </tr>
   </tbody>
 </table>
 
-<div style="text-align: right;">
+<!--div style="text-align: right;">
   <button type="button" class="btn btn-primary" [disabled]="skip==0" (click)="previousPage()">
     <fa-icon [icon]="faChevronLeftIcon"></fa-icon> Previous
-  </button> 
-  Page {{page+1}} 
+  </button>
+  Page {{page+1}}
   <button type="button" class="btn btn-primary" (click)="nextPage()">
     Next <fa-icon [icon]="faChevronRightIcon"></fa-icon>
   </button>
-</div>
+</div-->
 
 
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title">User Details</h4>
+    <h4 class="modal-title">Employee Details</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>

@@ -30,7 +30,7 @@ export class UsersListComponent implements OnInit {
 
   constructor(private employeeService: EmployeeService, private modalService: NgbModal, private config: AppConfigService) {
     this.getEmployees();
-    this.limit = this.config.tableRows;
+    //this.limit = this.config.tableRows;
   }
 
   ngOnInit(): void { }
