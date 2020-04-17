@@ -1,0 +1,5 @@
+{
+    "employeesUrlApi": "https://kpgos-poc-employee-svc.azurewebsites.net/employees",
+    "employeeDescriptionUrlApi": "https://kpgos-poc-employee-svc.azurewebsites.net/employees/",
+    "tableRows":10
+}
